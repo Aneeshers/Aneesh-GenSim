@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/aneesh/Downloads/GenSim/gensim/sim_runner.py", line 179, in simulate_task
+    task, dataset, env, expert = self.setup_env()
+                                 ^^^^^^^^^^^^^^^^
+  File "/Users/aneesh/Downloads/GenSim/gensim/sim_runner.py", line 106, in setup_env
+    self.cfg['assets_root'],
+    ~~~~~~~~^^^^^^^^^^^^^^^
+KeyError: 'assets_root'

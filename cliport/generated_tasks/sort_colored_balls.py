@@ -1,0 +1,59 @@
+import numpy as np
+import os
+import pybullet as p
+import random
+from cliport.tasks import primitives
+from cliport.tasks.grippers import Spatula
+from cliport.tasks.task import Task
+from cliport.utils import utils
+import numpy as np
+from cliport.tasks.task import Task
+from cliport.utils import utils
+import random
+class SortColoredBalls(Task):
+    """Pick up balls of different colors and place each of them into a corresponding bowl of the same color."""
+
+    def __init__(self):
+        super().__init__()
+        self.max_steps = 10
+        self.lang_template = "put the {color} ball in the {color} bowl"
+        self.task_completed_desc = "done sorting colored balls."
+        self.additional_reset()
+
+    def reset(self, env):
+        super().reset(env)
+
+        # Define colors
+        colors = ['red', 'green', 'blue', 'yellow', 'purple']
+
+        # Add bowls.
+        bowl_size = (0.12, 0.12, 0)
+        bowl_urdf = 'bowl/bowl.urdf'
+        bowl_poses = []
+        for color in colors:
+            bowl_pose = self.get_random_pose(env, bowl_size)
+            env.add_object(bowl_urdf, bowl_pose, 'fixed', color=utils.COLORS[color])
+            bowl_poses.append(bowl_pose)
+        # modify target position of last bowl pose
+        #bowl = random.randint(0,(len(bowl_poses) -1))
+        #bowlx = bowl_poses[bowl][0][0]
+        #diff = random.uniform(0, bowlx)
+        #bowl_poses[bowl][0][0] -= diff
+
+        # Add balls.
+        ball_size = (0.04, 0.04, 0.04)
+        ball_template = 'ball/ball-template.urdf'
+        balls = []
+        for color in colors:
+            ball_pose = self.get_random_pose(env, ball_size)
+            replace = {'DIM': ball_size, 'HALF': (ball_size[0] / 2, ball_size[1] / 2, ball_size[2] / 2), 'COLOR': utils.COLORS[color]}
+            ball_urdf = self.fill_template(ball_template, replace)
+            ball_id = env.add_object(ball_urdf, ball_pose)
+            balls.append(ball_id)
+
+        # Goal: each ball is in a bowl of the same color.
+        for i in range(len(colors)):
+            language_goal = self.lang_template.format(color=colors[i])
+            self.add_goal(objs=[balls[i]], matches=np.ones((1, 1)), targ_poses=[bowl_poses[i]], replace=False,
+                rotations=True, metric='pose', params=None, step_max_reward=1 / len(colors), language_goal=language_goal)
+            

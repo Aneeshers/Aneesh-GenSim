@@ -1,0 +1,4 @@
+prompt,metric,success
+vanilla_task_generation_prompt_simple,syntax,0.1
+vanilla_task_generation_prompt_simple,runtime,0.0
+vanilla_task_generation_prompt_simple,env. completion,0.0

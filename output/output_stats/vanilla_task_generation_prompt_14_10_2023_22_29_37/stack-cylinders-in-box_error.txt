@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/GenSim/gensim/sim_runner.py", line 173, in simulate_task
+    task, dataset, env, expert = self.setup_env()
+  File "/content/drive/MyDrive/GenSim/gensim/sim_runner.py", line 100, in setup_env
+    self.cfg['assets_root'],
+KeyError: 'assets_root'

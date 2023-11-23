@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/aneesh/Downloads/GenSim/gensim/sim_runner.py", line 195, in simulate_task
+    total_reward = self.run_one_episode(dataset, expert, env, task, episode, seed)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aneesh/Downloads/GenSim/gensim/sim_runner.py", line 141, in run_one_episode
+    obs = env.reset()
+          ^^^^^^^^^^^
+  File "/Users/aneesh/Downloads/GenSim/cliport/environments/environment.py", line 280, in reset
+    self.task.reset(self)
+  File "<string>", line 43, in reset
+IndexError: tuple index out of range
