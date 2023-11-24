@@ -27,6 +27,7 @@ class Task():
         self.sixdof = False
         self.primitive = primitives.PickPlace()
         self.oracle_cams = cameras.Oracle.CONFIG
+        self.rng = None
 
         # Evaluation epsilons (for pose evaluation metric).
         self.pos_eps = 0.01
@@ -86,7 +87,7 @@ class Task():
         """Oracle agent."""
         OracleAgent = collections.namedtuple('OracleAgent', ['act'])
 
-        def act(obs, info, i=1):
+        def act(obs, info):
             """Calculate action."""
 
             # Oracle uses perfect RGB-D orthographic images and segmentation masks.
@@ -193,10 +194,7 @@ class Task():
             if not rotations:
                 place_pose = (place_pose[0], (0, 0, 0, 1))
 
-                
             place_pose = (np.asarray(place_pose[0]), np.asarray(place_pose[1]))
-            #if i == 0:
-            #    place_pose[0][0] = place_pose[0][0] + 0.10
 
             return {'pose0': pick_pose, 'pose1': place_pose}
 
@@ -511,21 +509,6 @@ class Task():
         objs = self.zip_obj_ids(objs, symmetries)
         self.goals.append((objs, matches, targ_poses, replace, rotations,
                            metric, params, step_max_reward))
-        if len(self.goals) == 1:
-            # Convert the target tuple to a list
-            temp_list = list(self.goals[0][2][0][0])
-
-            # Modify the first element of the list
-            temp_list[0] = temp_list[0] + 0.10
-
-            # Convert the list back to a tuple after modification
-            modified_tuple = tuple(temp_list)
-            m2 = self.goals[0][2][0][1]
-            m3 = (modified_tuple, m2)
-            self.goals[0][2][0] = m3
-
-
-
         if language_goal is not None:
             if type(language_goal) is str:
                 self.lang_goals.append(language_goal)

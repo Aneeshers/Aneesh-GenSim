@@ -9,8 +9,8 @@ max_env_run_cnt: 3 # maximum number of runs for each environment
 trials: 10 # how many times of spawning each environment generated
 output_folder: 'output/output_stats'
 model_output_dir: '' # to be filled in with date
-gpt_model: "gpt-4-0613" # which openai gpt model to use
-openai_key: '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'
+gpt_model: "gpt-4-1106-preview" # which openai gpt model to use
+openai_key: ${oc.env:OPENAI_KEY}
 
 # Advanced options
 task_description_candidate_num: -1 # the number of sample task descriptions. -1 means all 

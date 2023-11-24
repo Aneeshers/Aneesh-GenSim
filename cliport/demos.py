@@ -4,8 +4,7 @@ import os
 import hydra
 import numpy as np
 import random
-import sys
-sys.path[0] = '/Users/aneesh/Downloads/GenSim'
+
 from cliport import tasks
 from cliport.dataset import RavensDataset
 from cliport.environments.environment import Environment
@@ -78,13 +77,11 @@ def main(cfg):
 
             # Start video recording (NOTE: super slow)
             if record:
-                print("we would've recorded")
-                #env.start_rec(f'{dataset.n_episodes+1:06d}')
+                env.start_rec(f'{dataset.n_episodes+1:06d}')
 
 
             # Rollout expert policy
-            for i in range(task.max_steps):
-
+            for _ in range(task.max_steps):
                 act = agent.act(obs, info)
                 episode.append((obs, act, reward, info))
                 lang_goal = info['lang_goal']

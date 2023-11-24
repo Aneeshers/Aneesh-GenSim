@@ -124,6 +124,7 @@ cliport/generated_tasks/corner_block_challenge.py
 cliport/generated_tasks/corner_sort_cylinders.py
 cliport/generated_tasks/create_pyramid_blocks_and_container.py
 cliport/generated_tasks/create_pyramid_with_color_coded_ells.py
+cliport/generated_tasks/cyclinder_line_alignment.py
 cliport/generated_tasks/cylinder_and_box_arrangement.py
 cliport/generated_tasks/cylinder_balancing_and_placement.py
 cliport/generated_tasks/cylinder_balancing_on_blocks.py
@@ -167,6 +168,7 @@ cliport/generated_tasks/sequential_block_insertion.py
 cliport/generated_tasks/sequential_insertion_and_stacking.py
 cliport/generated_tasks/sort_and_assemble_block_castle.py
 cliport/generated_tasks/sort_and_stack_clr_blocks.py
+cliport/generated_tasks/sort_colored_balls.py
 cliport/generated_tasks/sort_insert_color_coordinated_blocks.py
 cliport/generated_tasks/sorting_blocks_into_pallets.py
 cliport/generated_tasks/sphere_align_stand.py
@@ -251,6 +253,7 @@ gensim/evaluate_finetune_model_offline.py
 gensim/memory.py
 gensim/prepare_finetune_codellamma.py
 gensim/prepare_finetune_gpt_new.py
+gensim/runSim.py
 gensim/run_simulation.py
 gensim/sim_runner.py
 gensim/topdown_sim_runner.py
